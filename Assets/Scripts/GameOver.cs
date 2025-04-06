@@ -26,7 +26,6 @@ public class GameOver : MonoBehaviour
     }
     void ReturnToPreviousScene()
     {
-        Debug.Log(SceneMemory.previousSceneName.ToString());
         if (!string.IsNullOrEmpty(SceneMemory.previousSceneName))
         {
             SceneManager.LoadScene(SceneMemory.previousSceneName);

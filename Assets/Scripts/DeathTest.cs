@@ -17,6 +17,7 @@ public class DeathTest : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            SceneMemory.previousSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("GameOver");
         }
     }

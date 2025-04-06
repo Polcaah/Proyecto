@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button startButton; // Botón para cambiar de escena
-    public Button exitButton; // Botón para salir del juego
-    public string sceneName; // Nombre de la escena a la que quieres cambiar
+    public Button startButton; 
+    public Button exitButton; 
+    public string sceneName; 
 
     void Start()
     {
