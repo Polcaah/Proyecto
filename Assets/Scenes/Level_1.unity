@@ -643,19 +643,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 716995520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04cf121b86166a04e88c5d2f9b7cbaad, type: 3}
+  m_Script: {fileID: 11500000, guid: f61611cca1e5b51429d7944397db08ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 16
-  jumpPower: 22
-  maxJumps: 1
+  speed: 4
+  jumpPower: 3
+  maxJumps: 2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   wallLayer:
     serializedVersion: 2
-    m_Bits: 128
-  groundPoundForce: 30
+    m_Bits: 0
+  groundPoundForce: 0
 --- !u!1 &928199460
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 991348661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d5981bd579f5754ab4d86ecd6b75749, type: 3}
+  m_Script: {fileID: 11500000, guid: d938c8edad1f4ed41a6e8b19a33e7a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &991348663
