@@ -10,15 +10,27 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private int groundPoundForce;
+    [SerializeField] private float wallSlideSpeed;
+
 
     private Rigidbody2D body;
     private int jumps;
     private BoxCollider2D boxCollider;
     private float wallJumpCooldown;
+    private bool isWallSliding;
+    private int wallDirX;
     private float horizontalInput;
     private bool isGroundPounding;
-    private float groundPoundDelay = 0.25f;
+    private float groundPoundDelay = 0.12f;
     private float groundPoundTimer;
+    private bool isMidAirSpinning;
+    private float midAirSpinDuration = 0.10f;
+    private float midAirSpinTimer;
+    private float midAirSpinCooldown;
+    private bool isDashing;
+    private float dashDuration = 0.18f;
+    private float dashTimer;
+    private float dashCooldown;
 
     private void Awake()
     {
@@ -29,29 +41,79 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        if (horizontalInput != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(horizontalInput), transform.localScale.y, transform.localScale.z);
+        }
+        if (wallJumpCooldown <= 0f)
+        {
+            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+        }
+        wallDirX = WallDirection();
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGroundPounding)
         {
-            if (IsGrounded() || jumps > 0)
+            if (IsGrounded())
             {
                 Jump();
             }
-            else if (OnWall() && !IsGrounded())
+            else if (OnWall())
             {
                 WallJump();
             }
+            else if (jumps > 0)
+            {
+                Jump();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && !isGroundPounding)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && (dashCooldown <= 0f)) Dash();
+
+        if (Input.GetKeyDown(KeyCode.S) && !isGroundPounding) GroundPound();
+
+        if (Input.GetKeyDown(KeyCode.Q) && !IsGrounded() && (midAirSpinCooldown <= 0f)) MidAirSpin();
+
+        if (IsGrounded() || OnWall()) jumps = maxJumps;
+
+        if (wallDirX != 0 && horizontalInput == wallDirX && !IsGrounded() && wallJumpCooldown <= 0f)
         {
-            GroundPound();
+            isWallSliding = true;
+            body.velocity = new Vector2(body.velocity.x, -wallSlideSpeed);
         }
-        if (IsGrounded()) jumps = maxJumps;
+        else
+        {
+            isWallSliding = false;
+        }
 
         if (wallJumpCooldown > 0)
         {
             wallJumpCooldown -= Time.deltaTime;
+        }
+
+        if (dashCooldown > 0)
+        {
+            dashCooldown -= Time.deltaTime;
+        }
+
+        if (midAirSpinCooldown > 0)
+        {
+            midAirSpinCooldown -= Time.deltaTime;
+        }
+
+        if (isDashing)
+        {
+            dashTimer -= Time.deltaTime;
+            if (dashTimer > 0f)
+            {
+                float direction = Mathf.Sign(transform.localScale.x);
+                body.velocity = new Vector2(direction * 30f, 0f);
+                body.gravityScale = 0f;
+            }
+            else
+            {
+                isDashing = false;
+                body.gravityScale = 6f;
+            }
         }
 
         if (isGroundPounding)
@@ -59,27 +121,32 @@ public class PlayerMovement : MonoBehaviour
             groundPoundTimer -= Time.deltaTime;
             if (groundPoundTimer > 0f)
             {
-                body.velocity = new Vector2(0, 0);
+                body.velocity = Vector2.zero;
                 body.gravityScale = 0f;
             }
             else
             {
-                body.velocity = new Vector2(0, -groundPoundForce);
+                body.velocity = new Vector2(0f, -groundPoundForce);
                 body.gravityScale = 6f;
             }
-
-        }
-        else
-        {
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        }
-
-
-        if (IsGrounded())
-        {
-            if (isGroundPounding)
+            if (IsGrounded())
             {
                 isGroundPounding = false;
+            }
+        }
+
+        if (isMidAirSpinning)
+        {
+            midAirSpinTimer -= Time.deltaTime;
+            if (midAirSpinTimer > 0f)
+            {
+                body.velocity = new Vector2(horizontalInput * speed, 0f);
+                body.gravityScale = 0f;
+            }
+            else
+            {
+                isMidAirSpinning = false;
+                body.gravityScale = 6f;
             }
         }
     }
@@ -92,19 +159,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        int facingDirection = (int)Mathf.Sign(transform.localScale.x);
-        body.velocity = new Vector2(-facingDirection * 8f, 12f);
-        wallJumpCooldown = 0.1f;
+        body.velocity = new Vector2(-wallDirX * speed, jumpPower);
+        wallJumpCooldown = 0.25f;
+        isWallSliding = false;
+        jumps = maxJumps;
     }
 
     public void GroundPound()
     {
+        isDashing = false;
+        isMidAirSpinning = false;
         isGroundPounding = true;
         groundPoundTimer = groundPoundDelay;
         body.velocity = Vector2.zero;
-        body.gravityScale = 0;
     }
 
+    public void Dash()
+    {
+        isGroundPounding = false;
+        isMidAirSpinning = false;
+        isDashing = true;
+        dashTimer = dashDuration;
+        dashCooldown = 0.375f;
+    }
+
+    public void MidAirSpin()
+    {
+        isGroundPounding = false;
+        isMidAirSpinning = true;
+        midAirSpinTimer = midAirSpinDuration;
+        midAirSpinCooldown = 0.375f;
+    }
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);

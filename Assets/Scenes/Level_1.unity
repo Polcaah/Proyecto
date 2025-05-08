@@ -646,16 +646,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61611cca1e5b51429d7944397db08ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  jumpPower: 3
-  maxJumps: 2
+  speed: 12
+  jumpPower: 18
+  maxJumps: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
-  groundPoundForce: 0
+    m_Bits: 128
+  groundPoundForce: 22
+  wallSlideSpeed: 10
 --- !u!1 &928199460
 GameObject:
   m_ObjectHideFlags: 0
