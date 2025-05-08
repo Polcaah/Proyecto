@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1067981881796592568}
   - component: {fileID: 8815850512605340147}
   m_Layer: 0
-  m_Name: Enemy 1
+  m_Name: EnemyPatrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &-8146869850261120338
@@ -168,9 +168,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2555349104303379131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdb671ea412a30f48a201d589ef3b110, type: 3}
+  m_Script: {fileID: 11500000, guid: 49fa01530ac811042940b60897fca64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  speed: 2
+  speed: 0
