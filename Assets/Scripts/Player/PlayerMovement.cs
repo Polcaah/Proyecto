@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int groundPoundForce;
     [SerializeField] private float wallSlideSpeed;
 
-
     private Rigidbody2D body;
     private int jumps;
     private BoxCollider2D boxCollider;
@@ -53,18 +52,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !isGroundPounding)
         {
-            if (IsGrounded())
-            {
-                Jump();
-            }
-            else if (OnWall())
-            {
-                WallJump();
-            }
-            else if (jumps > 0)
-            {
-                Jump();
-            }
+            if (IsGrounded()) Jump();
+
+            else if (OnWall()) WallJump();
+
+            else if (jumps > 0) Jump();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && (dashCooldown <= 0f)) Dash();
@@ -85,20 +77,11 @@ public class PlayerMovement : MonoBehaviour
             isWallSliding = false;
         }
 
-        if (wallJumpCooldown > 0)
-        {
-            wallJumpCooldown -= Time.deltaTime;
-        }
+        if (wallJumpCooldown > 0) wallJumpCooldown -= Time.deltaTime;
 
-        if (dashCooldown > 0)
-        {
-            dashCooldown -= Time.deltaTime;
-        }
+        if (dashCooldown > 0) dashCooldown -= Time.deltaTime;
 
-        if (midAirSpinCooldown > 0)
-        {
-            midAirSpinCooldown -= Time.deltaTime;
-        }
+        if (midAirSpinCooldown > 0) midAirSpinCooldown -= Time.deltaTime;
 
         if (isDashing)
         {
