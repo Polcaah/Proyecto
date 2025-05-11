@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private int groundPoundForce;
     [SerializeField] private float wallSlideSpeed;
+    [SerializeField] private float dashDuration;
 
     private Rigidbody2D body;
     private int jumps;
@@ -27,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     private float midAirSpinTimer;
     private float midAirSpinCooldown;
     private bool isDashing;
-    private float dashDuration = 0.18f;
     private float dashTimer;
     private float dashCooldown;
 
@@ -89,13 +89,13 @@ public class PlayerMovement : MonoBehaviour
             if (dashTimer > 0f)
             {
                 float direction = Mathf.Sign(transform.localScale.x);
-                body.velocity = new Vector2(direction * 30f, 0f);
+                body.velocity = new Vector2(direction * 10f, 0f);
                 body.gravityScale = 0f;
             }
             else
             {
                 isDashing = false;
-                body.gravityScale = 6f;
+                body.gravityScale = 2f;
             }
         }
 
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 body.velocity = new Vector2(0f, -groundPoundForce);
-                body.gravityScale = 6f;
+                body.gravityScale = 2f;
             }
             if (IsGrounded())
             {
@@ -129,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 isMidAirSpinning = false;
-                body.gravityScale = 6f;
+                body.gravityScale = 2f;
             }
         }
     }
