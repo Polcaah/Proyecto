@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FruitCollected : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public int scoreValue = 10;
+
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            GetComponent<SpriteRenderer>().enabled = false;
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            Destroy(gameObject, 0.5f);
-            GameManager.Instance.AddPoint();
+            GameManager.instance.AddScore(scoreValue);
+            Destroy(gameObject);
         }
     }
 }
