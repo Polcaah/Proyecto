@@ -17,7 +17,7 @@ public class PlayerRespawn : MonoBehaviour
         transform.position = currentCheckpoint.position;
         playerHealth.Respawn();
 
-        //Camera.main.GetComponent<CameraController>().MoveToNewRoom(transform.parent);
+        Camera.main.GetComponent<CameraController>().MoveToNewRoom(transform.parent);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
