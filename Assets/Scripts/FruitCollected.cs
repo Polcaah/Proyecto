@@ -5,14 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class FruitCollected : MonoBehaviour
 {
-    public int scoreValue = 10;
-
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            GameManager.instance.AddScore(scoreValue);
-            Destroy(gameObject);
+            GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            Destroy(gameObject, 0.5f);
         }
     }
 }
