@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int groundPoundForce;
     [SerializeField] private float wallSlideSpeed;
     [SerializeField] private float dashDuration;
+    [SerializeField] private float dashSetCooldown;
+    [SerializeField] private float dashMult;
 
     private Rigidbody2D body;
     private int jumps;
@@ -89,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             if (dashTimer > 0f)
             {
                 float direction = Mathf.Sign(transform.localScale.x);
-                body.velocity = new Vector2(direction * 10f, 0f);
+                body.velocity = new Vector2(direction * dashMult, 0f);
                 body.gravityScale = 0f;
             }
             else
@@ -142,10 +144,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump()
     {
-        body.velocity = new Vector2(-wallDirX * speed, jumpPower);
-        wallJumpCooldown = 0.25f;
-        isWallSliding = false;
-        jumps = maxJumps;
+        int facingDirection = (int)Mathf.Sign(transform.localScale.x);
+        body.velocity = new Vector2(-facingDirection * 2f, 4f);
+        wallJumpCooldown = 0.3f;
     }
 
     public void GroundPound()
@@ -163,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         isMidAirSpinning = false;
         isDashing = true;
         dashTimer = dashDuration;
-        dashCooldown = 0.375f;
+        dashCooldown = dashSetCooldown;
     }
 
     public void MidAirSpin()
@@ -181,16 +182,16 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnWall()
     {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 0.6f, wallLayer);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.6f, wallLayer);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 0.2f, wallLayer);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.2f, wallLayer);
 
         return hitRight.collider != null || hitLeft.collider != null;
     }
 
     private int WallDirection()
     {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 0.6f, wallLayer);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.6f, wallLayer);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 0.2f, wallLayer);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.2f, wallLayer);
 
         if (hitRight.collider != null)
         {
