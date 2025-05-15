@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  jumpPower: 5
+  jumpPower: 4.5
   maxJumps: 0
   groundLayer:
     serializedVersion: 2
@@ -182,11 +182,12 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  groundPoundForce: 6
+  groundPoundForce: 4
   wallSlideSpeed: 1.5
   dashDuration: 0.2
   dashSetCooldown: 0.375
   dashMult: 5
+  coyoteTime: 0.15
 --- !u!114 &8218589558849606576
 MonoBehaviour:
   m_ObjectHideFlags: 0

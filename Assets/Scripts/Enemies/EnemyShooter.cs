@@ -12,6 +12,7 @@ public class EnemyShooter : MonoBehaviour
     public float timeBetween;
     public float timeLastShot;
     public float timeWaitShot;
+    public Animator animator;
 
     private void Update()
     {
@@ -21,6 +22,7 @@ public class EnemyShooter : MonoBehaviour
             if(Time.time > timeBetween + timeLastShot)
             {
                 timeLastShot = Time.time;
+                animator.SetTrigger("Shoot");
                 Invoke(nameof(Shoot), timeWaitShot);
             }
         }

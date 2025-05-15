@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration;
     [SerializeField] private float dashSetCooldown;
     [SerializeField] private float dashMult;
+    [SerializeField] private float coyoteTime = 0.15f;
 
     private Rigidbody2D body;
     private int jumps;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private float dashTimer;
     private float dashCooldown;
+    private float coyoteTimeCounter;
 
     private void Awake()
     {
@@ -41,10 +43,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        if (horizontalInput != 0)
+        if (!isDashing)
         {
-            transform.localScale = new Vector3(Mathf.Sign(horizontalInput), transform.localScale.y, transform.localScale.z);
+            horizontalInput = Input.GetAxis("Horizontal");
+
+            if (horizontalInput != 0)
+            {
+                transform.localScale = new Vector3(Mathf.Sign(horizontalInput), transform.localScale.y, transform.localScale.z);
+            }
         }
         if (wallJumpCooldown <= 0f)
         {
@@ -52,9 +58,18 @@ public class PlayerMovement : MonoBehaviour
         }
         wallDirX = WallDirection();
 
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && !isGroundPounding)
         {
-            if (IsGrounded()) Jump();
+            if (coyoteTimeCounter > 0) Jump();
 
             else if (OnWall()) WallJump();
 
@@ -113,10 +128,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 body.velocity = new Vector2(0f, -groundPoundForce);
                 body.gravityScale = 2f;
-            }
-            if (IsGrounded())
-            {
-                isGroundPounding = false;
+                if (IsGrounded())
+                {
+                    isGroundPounding = false;
+                }
             }
         }
 

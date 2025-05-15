@@ -355,7 +355,8 @@ MonoBehaviour:
   enemyBullet: {fileID: 8612536803620083576, guid: 48ab4715770f13e438f5ad8accdf9a17, type: 3}
   timeBetween: 3
   timeLastShot: 0
-  timeWaitShot: 0
+  timeWaitShot: 0.4
+  animator: {fileID: 596655829}
 --- !u!1 &631935085
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,8 +1858,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1310899435}
-  aheadDistance: 5
-  cameraSpeed: 0.001
+  aheadDistance: 1
+  cameraSpeed: 0.5
 --- !u!4 &1310899435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4552888752335966952, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
@@ -1889,7 +1890,7 @@ Transform:
   m_GameObject: {fileID: 1381995821}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.1863, y: 0.0211, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4400,6 +4401,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2387823719608310893, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4552888752335966952, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13183296
