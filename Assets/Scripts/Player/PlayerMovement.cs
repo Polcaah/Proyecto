@@ -1,222 +1,166 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
-    [SerializeField] private int maxJumps;
-    [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private int groundPoundForce;
-    [SerializeField] private float wallSlideSpeed;
-    [SerializeField] private float dashDuration;
-    [SerializeField] private float dashSetCooldown;
-    [SerializeField] private float dashMult;
-    [SerializeField] private float coyoteTime = 0.15f;
-
-    private Rigidbody2D body;
-    private int jumps;
-    private BoxCollider2D boxCollider;
-    private float wallJumpCooldown;
+    private float horizontal;
+    private float speed = 3f;
+    private float jumpingPower = 6f;
+    private bool isFacingRight = true;
     private bool isWallSliding;
-    private int wallDirX;
-    private float horizontalInput;
-    private bool isGroundPounding;
-    private float groundPoundDelay = 0.12f;
-    private float groundPoundTimer;
-    private bool isMidAirSpinning;
-    private float midAirSpinDuration = 0.10f;
-    private float midAirSpinTimer;
-    private float midAirSpinCooldown;
-    private bool isDashing;
-    private float dashTimer;
-    private float dashCooldown;
-    private float coyoteTimeCounter;
+    private float wallSlidingSpeed = 2f;
 
-    private void Awake()
-    {
-        body = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 10f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
+    private bool isWallJumping;
+    private float wallJumpingDirection;
+    private float wallJumpingTime = 0.2f;
+    private float wallJumpingCounter;
+    private float wallJumpingDuration = 0.4f;
+    private Vector2 wallJumpingPower = new Vector2(3f, 6f);
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private TrailRenderer tr;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask wallLayer;
+
 
     private void Update()
     {
-        if (!isDashing)
+        if (isDashing)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-
-            if (horizontalInput != 0)
-            {
-                transform.localScale = new Vector3(Mathf.Sign(horizontalInput), transform.localScale.y, transform.localScale.z);
-            }
-        }
-        if (wallJumpCooldown <= 0f)
-        {
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        }
-        wallDirX = WallDirection();
-
-        if (IsGrounded())
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
+            return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isGroundPounding)
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            if (coyoteTimeCounter > 0) Jump();
-
-            else if (OnWall()) WallJump();
-
-            else if (jumps > 0) Jump();
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && (dashCooldown <= 0f)) Dash();
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
 
-        if (Input.GetKeyDown(KeyCode.S) && !isGroundPounding) GroundPound();
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
 
-        if (Input.GetKeyDown(KeyCode.Q) && !IsGrounded() && (midAirSpinCooldown <= 0f)) MidAirSpin();
+        WallSlide();
+        WallJump();
 
-        if (IsGrounded() || OnWall()) jumps = maxJumps;
+        if (!isWallJumping)
+        {
+            Flip();
+        }
+    }
 
-        if (wallDirX != 0 && horizontalInput == wallDirX && !IsGrounded() && wallJumpCooldown <= 0f)
+
+    private void FixedUpdate()
+    {
+        if (isDashing)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private bool IsWalled()
+    {
+        return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+    }
+
+    private void WallSlide()
+    {
+        if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
             isWallSliding = true;
-            body.velocity = new Vector2(body.velocity.x, -wallSlideSpeed);
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         else
         {
             isWallSliding = false;
         }
-
-        if (wallJumpCooldown > 0) wallJumpCooldown -= Time.deltaTime;
-
-        if (dashCooldown > 0) dashCooldown -= Time.deltaTime;
-
-        if (midAirSpinCooldown > 0) midAirSpinCooldown -= Time.deltaTime;
-
-        if (isDashing)
-        {
-            dashTimer -= Time.deltaTime;
-            if (dashTimer > 0f)
-            {
-                float direction = Mathf.Sign(transform.localScale.x);
-                body.velocity = new Vector2(direction * dashMult, 0f);
-                body.gravityScale = 0f;
-            }
-            else
-            {
-                isDashing = false;
-                body.gravityScale = 2f;
-            }
-        }
-
-        if (isGroundPounding)
-        {
-            groundPoundTimer -= Time.deltaTime;
-            if (groundPoundTimer > 0f)
-            {
-                body.velocity = Vector2.zero;
-                body.gravityScale = 0f;
-            }
-            else
-            {
-                body.velocity = new Vector2(0f, -groundPoundForce);
-                body.gravityScale = 2f;
-                if (IsGrounded())
-                {
-                    isGroundPounding = false;
-                }
-            }
-        }
-
-        if (isMidAirSpinning)
-        {
-            midAirSpinTimer -= Time.deltaTime;
-            if (midAirSpinTimer > 0f)
-            {
-                body.velocity = new Vector2(horizontalInput * speed, 0f);
-                body.gravityScale = 0f;
-            }
-            else
-            {
-                isMidAirSpinning = false;
-                body.gravityScale = 2f;
-            }
-        }
-    }
-
-    private void Jump()
-    {
-        body.velocity = new Vector2(body.velocity.x * 2, jumpPower);
-        jumps--;
     }
 
     private void WallJump()
     {
-        int facingDirection = (int)Mathf.Sign(transform.localScale.x);
-        body.velocity = new Vector2(-facingDirection * 2f, 4f);
-        wallJumpCooldown = 0.3f;
+        if (isWallSliding)
+        {
+            isWallJumping = false;
+            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingCounter = wallJumpingTime;
+
+            CancelInvoke(nameof(StopWallJumping));
+        }
+        else
+        {
+            wallJumpingCounter -= Time.deltaTime;
+        }
+
+        if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
+        {
+            isWallJumping = true;
+            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            wallJumpingCounter = 0f;
+
+            if (transform.localScale.x != wallJumpingDirection)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
+
+            Invoke(nameof(StopWallJumping), wallJumpingDuration);
+        }
     }
 
-    public void GroundPound()
+    private void StopWallJumping()
     {
-        isDashing = false;
-        isMidAirSpinning = false;
-        isGroundPounding = true;
-        groundPoundTimer = groundPoundDelay;
-        body.velocity = Vector2.zero;
+        isWallJumping = false;
     }
 
-    public void Dash()
+    private void Flip()
     {
-        isGroundPounding = false;
-        isMidAirSpinning = false;
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+            Vector3 localScale = transform.localScale;
+            isFacingRight = !isFacingRight;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
         isDashing = true;
-        dashTimer = dashDuration;
-        dashCooldown = dashSetCooldown;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+        StopCoroutine(Dash());
     }
-
-    public void MidAirSpin()
-    {
-        isGroundPounding = false;
-        isMidAirSpinning = true;
-        midAirSpinTimer = midAirSpinDuration;
-        midAirSpinCooldown = 0.375f;
-    }
-    private bool IsGrounded()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-        return raycastHit.collider != null;
-    }
-
-    private bool OnWall()
-    {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 0.2f, wallLayer);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.2f, wallLayer);
-
-        return hitRight.collider != null || hitLeft.collider != null;
-    }
-
-    private int WallDirection()
-    {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, 0.2f, wallLayer);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 0.2f, wallLayer);
-
-        if (hitRight.collider != null)
-        {
-            return 1;
-        }
-        else if (hitLeft.collider != null)
-        {
-            return -1;
-        }
-
-        return 0;
-    } 
 }

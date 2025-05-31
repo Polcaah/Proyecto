@@ -1752,6 +1752,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &794051262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794051263}
+  m_Layer: 8
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &794051263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794051262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1310899435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &842717488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,6 +1896,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4552888752335966952, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
   m_PrefabInstance: {fileID: 4161258777002068637}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1310899439 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2387823719608310893, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+  m_PrefabInstance: {fileID: 4161258777002068637}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1381995821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,6 +1993,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d3291a028b25e343b228600a4295aca, type: 3}
+--- !u!1 &1719027250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1719027251}
+  m_Layer: 8
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1719027251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719027250}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1310899435}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1787079913
 GameObject:
   m_ObjectHideFlags: 0
@@ -4466,6 +4533,22 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2395805356909142999, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6056987297122131021, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
+    - target: {fileID: 3234493479763448055, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 1310899439}
+    - target: {fileID: 3234493479763448055, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      propertyPath: wallCheck
+      value: 
+      objectReference: {fileID: 794051263}
+    - target: {fileID: 3234493479763448055, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 1719027251}
     - target: {fileID: 4552888752335966952, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13183296
@@ -4516,7 +4599,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4552888752335966952, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1719027251}
+    - targetCorrespondingSourceObject: {fileID: 4552888752335966952, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 794051263}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6fb92888e6a0954cbbbcd8216506259, type: 3}
 --- !u!1660057539 &9223372036854775807
