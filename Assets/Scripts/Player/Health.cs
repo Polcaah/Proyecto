@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
                 GetComponent<PlayerMovement>().enabled = false;
                 dead = true;
 
-                Invoke("RespawnPlayer", 1f);
+                Invoke("RespawnPlayer", 0.3f);
             }
         }
     }
