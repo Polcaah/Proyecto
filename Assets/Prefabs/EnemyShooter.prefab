@@ -87,8 +87,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4407058302419144949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3714cf586a75c747b022fab2b83e90c, type: 3}
+  m_Script: {fileID: 11500000, guid: 79dae0b57c6de334691ab9a9abae0aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 5457921855668563150, guid: 4309534cc328dff4c9a207100c9d35f9, type: 3}
-  bulletPos: {fileID: 0}
+  shootController: {fileID: 0}
+  lineDistance: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerInRange: 0
+  enemyBullet: {fileID: 0}
+  timeBetween: 0
+  timeLastShot: 0
+  timeWaitShot: 0
+  animator: {fileID: 0}

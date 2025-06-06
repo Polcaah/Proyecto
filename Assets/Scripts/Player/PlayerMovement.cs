@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 3f;
-    private float jumpingPower = 6f;
+    private float speed = 2f;
+    private float jumpingPower = 5f;
     private bool isFacingRight = true;
     private bool isWallSliding;
     private float wallSlidingSpeed = 2f;

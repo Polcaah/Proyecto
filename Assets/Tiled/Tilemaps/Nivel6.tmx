@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="18" height="9" tilewidth="18" tileheight="18" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="18" height="9" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="2">
  <tileset firstgid="1" source="../Tilesets/tilemap_packed.tsx"/>
  <tileset firstgid="181" source="../Tilesets/tilemap-characters_packed.tsx"/>
  <layer id="5" name="Ground" width="18" height="9">
@@ -29,11 +29,14 @@
 1610612786,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1610612786,
 1610612786,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1610612786,
 1610612786,0,0,0,0,0,68,0,0,68,0,0,68,0,0,112,0,1610612786,
-1610612786,127,113,0,89,0,0,0,0,0,0,0,0,125,0,132,0,1610612786,
+1610612786,127,0,0,89,0,0,0,0,0,0,0,0,125,0,132,0,1610612786,
 1610612785,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1610612785,
 48,49,50,50,50,50,50,50,50,50,50,50,50,50,50,50,51,48
 </data>
  </layer>
+ <objectgroup id="6" name="Finish">
+  <object id="1" x="269.158" y="89.1033" width="19.4348" height="37.0435"/>
+ </objectgroup>
  <layer id="4" name="Actors" width="18" height="9">
   <properties>
    <property name="unity:sortingLayer" value="Default"/>
@@ -45,7 +48,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,45,0,0,0,160,2684354713,0,0,0,0,2684354713,213,0,0,0,0,
+0,0,0,0,0,0,160,2684354713,0,0,0,0,2684354713,213,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>

@@ -61,6 +61,12 @@
    <object id="1" x="0" y="0" width="18" height="18"/>
   </objectgroup>
  </tile>
+ <tile id="33">
+  <animation>
+   <frame tileid="33" duration="450"/>
+   <frame tileid="53" duration="450"/>
+  </animation>
+ </tile>
  <tile id="36">
   <objectgroup draworder="index" id="2">
    <object id="1" x="0.956522" y="1.04348" width="16.0435" height="16.9565"/>
@@ -145,6 +151,12 @@
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="1.02639" width="18" height="5.94306"/>
   </objectgroup>
+ </tile>
+ <tile id="111">
+  <animation>
+   <frame tileid="111" duration="250"/>
+   <frame tileid="112" duration="250"/>
+  </animation>
  </tile>
  <tile id="116">
   <objectgroup draworder="index" id="2">

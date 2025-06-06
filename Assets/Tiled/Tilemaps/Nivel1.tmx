@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="18" tileheight="18" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="18" tileheight="18" infinite="0" nextlayerid="9" nextobjectid="7">
  <tileset firstgid="1" source="../Tilesets/tilemap_packed.tsx"/>
  <layer id="5" name="Ground" width="16" height="9">
   <properties>
@@ -17,6 +17,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="8" name="DeathZone" offsetx="-0.75" offsety="0.25">
+  <properties>
+   <property name="unity:sortingLayer" value="Default"/>
+  </properties>
+  <object id="6" x="106.875" y="138.75" width="75.875" height="6.9375"/>
+ </objectgroup>
  <layer id="3" name="Walls" width="16" height="9">
   <properties>
    <property name="unity:sortingLayer" value="Walls"/>
@@ -33,6 +39,12 @@
 48,49,50,50,50,50,50,50,50,50,50,50,50,50,51,48
 </data>
  </layer>
+ <objectgroup id="7" name="Finish">
+  <properties>
+   <property name="unity:sortingLayer" value="Default"/>
+  </properties>
+  <object id="2" x="233.13" y="89.3478" width="19.4348" height="37.0435"/>
+ </objectgroup>
  <layer id="4" name="Actors" width="16" height="9">
   <properties>
    <property name="unity:sortingLayer" value="Default"/>
@@ -42,9 +54,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,68,68,0,0,0,0,0,0,0,
-0,0,0,0,0,0,68,0,0,68,0,0,0,0,0,0,
-0,0,45,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,112,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,132,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
