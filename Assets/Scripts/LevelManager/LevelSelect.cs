@@ -9,11 +9,19 @@ public class LevelSelect : MonoBehaviour
     [SerializeField] private bool unlocked;
     public Image unlockImage;
 
-    private void Update()
+    private void Start()
     {
         UpdateLevelImage();
+        UpdateLevelStatus();
     }
-
+    private void UpdateLevelStatus()
+    {
+        int previousLevelNum = int.Parse(gameObject.name) - 1;
+        if(PlayerPrefs.GetInt("Lv" + previousLevelNum) > 0)
+        {
+            unlocked = true; 
+        }
+    }
     private void UpdateLevelImage()
     {
         if (!unlocked)
