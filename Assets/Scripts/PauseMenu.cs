@@ -9,15 +9,16 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale = 0;
     }
 
     public void Home()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("LevelsWindow");
     }
     public void Restart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void Resume()

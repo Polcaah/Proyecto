@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject pauseMenu;
 
     private void Update()
     {
@@ -73,6 +74,11 @@ public class PlayerMovement : MonoBehaviour
         if (!isWallJumping && !isTouchingWall)
         {
             Flip();
+        }
+        if (Input.GetButtonDown("PauseMenu"))
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
         }
     }
 

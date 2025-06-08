@@ -370,8 +370,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -282554041
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &3436561310598969265
@@ -935,8 +935,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 2989997934548850278}
     m_Modifications:
     - target: {fileID: 4424241911343276560, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
-      propertyPath: m_SortingLayer
+      propertyPath: m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424241911343276560, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4424241911343276560, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -282554041
       objectReference: {fileID: 0}
     - target: {fileID: 4638777750078559442, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
       propertyPath: m_Name
@@ -952,7 +960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4778096651686255216, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 376.99997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4778096651686255216, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -964,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4778096651686255216, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6785.9995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4778096651686255216, guid: 9865960800473eb4ea7bef42cdf3d08f, type: 3}
       propertyPath: m_LocalRotation.w
