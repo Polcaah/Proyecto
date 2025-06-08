@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3864389225247845639}
   - component: {fileID: 6373028782359437761}
   - component: {fileID: 6255464822721784150}
+  - component: {fileID: -687383730417431123}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -131,6 +132,19 @@ MonoBehaviour:
   timeLastShot: 0
   timeWaitShot: 0.4
   animator: {fileID: 6373028782359437761}
+--- !u!114 &-687383730417431123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336924324013947905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7310647668c4c4b43b8626ede2ac3654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
 --- !u!1 &5994929464070862555
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +156,7 @@ GameObject:
   - component: {fileID: 7967335173598588861}
   m_Layer: 0
   m_Name: ShootController
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
