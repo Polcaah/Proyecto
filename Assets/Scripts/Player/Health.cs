@@ -46,6 +46,8 @@ public class Health : MonoBehaviour
     public void Respawn()
     {
         dead = false;
+        if (GameManager.instance != null)
+            GameManager.instance.AddScore(-20);
         AddHealth(startingHealth);
     }
 }

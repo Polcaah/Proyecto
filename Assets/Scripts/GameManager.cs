@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int amount)
     {
         score += amount;
+        ClampScore();
         UpdateScoreUI();
     }
 
@@ -28,5 +29,10 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.text = "Score: " + score.ToString();
+    }
+    void ClampScore()
+    {
+        if (score < 0)
+            score = 0;
     }
 }

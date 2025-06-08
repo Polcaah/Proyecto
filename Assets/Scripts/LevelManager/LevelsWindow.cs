@@ -14,8 +14,7 @@ public class LevelsWindow : MonoBehaviour
     public Button level_6;
     public Button level_7;
     public Button level_8;
-    public Button level_9;
-    public Button level_10;
+
     void Start()
     {
         if (level_1 != null)

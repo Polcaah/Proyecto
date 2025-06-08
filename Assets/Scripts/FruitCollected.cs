@@ -14,4 +14,9 @@ public class FruitCollected : MonoBehaviour
             Destroy(gameObject, 0.5f);
         }
     }
+    void OnDestroy()
+    {
+        if (GameManager.instance != null)
+            GameManager.instance.AddScore(10);
+    }
 }

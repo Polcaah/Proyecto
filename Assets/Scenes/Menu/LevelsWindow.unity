@@ -2687,8 +2687,6 @@ MonoBehaviour:
   level_6: {fileID: 1599618125}
   level_7: {fileID: 1771580368}
   level_8: {fileID: 1653167507}
-  level_9: {fileID: 0}
-  level_10: {fileID: 0}
 --- !u!1 &1870795294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2836,7 +2834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1945dff9520acd54ba4316f0c9229c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlocked: 0
+  unlocked: 1
   unlockImage: {fileID: 1475961219}
 --- !u!1 &1994690318
 GameObject:

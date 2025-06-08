@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,20 +12,28 @@ public class Enemy_Sideways : MonoBehaviour
     private float leftEdge;
     private float rightEdge;
 
+
     private void Awake()
     {
         leftEdge = transform.position.x - movementDistance;
         rightEdge = transform.position.x + movementDistance;
+        Vector3 scale = transform.localScale;
+        scale.x = -Mathf.Abs(scale.x);
+        transform.localScale = scale;
     }
     private void Update()
     {
         if(movingLeft)
         {
-            if(transform.position.x > leftEdge)
+            if (transform.position.x > leftEdge)
             {
-                 transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - speed * Time.deltaTime, transform.position.y, transform.position.z);
             }
-            else movingLeft = false; 
+            else
+            {
+                movingLeft = false;
+                Flip();
+            }
         }
         else
         {
@@ -32,10 +41,21 @@ public class Enemy_Sideways : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x + speed * Time.deltaTime, transform.position.y, transform.position.z);
             }
-            else movingLeft = true;
+            else
+            {
+                movingLeft = true;
+                Flip();
+            }
         }
     }
-    
+
+    private void Flip()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
