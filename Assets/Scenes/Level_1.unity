@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969369f0bec821c40a9a689a2bfacf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelIndex: 0
 --- !u!1001 &366158740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -444,11 +445,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1300685857976003431, guid: 077c58be0ac8c1a4b923b9882c29a5e6, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1300685857976003431, guid: 077c58be0ac8c1a4b923b9882c29a5e6, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -1066152840933708305, guid: 077c58be0ac8c1a4b923b9882c29a5e6, type: 3}
       propertyPath: m_IsTrigger
