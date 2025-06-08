@@ -17,7 +17,7 @@ public class LevelSelect : MonoBehaviour
     private void UpdateLevelStatus()
     {
         int previousLevelNum = int.Parse(gameObject.name) - 1;
-        if(PlayerPrefs.GetInt("Lv" + previousLevelNum) > 0)
+        if(PlayerPrefs.GetInt("Level_" + previousLevelNum) > 0)
         {
             unlocked = true; 
         }

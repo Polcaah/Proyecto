@@ -123,6 +123,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1433479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1433481}
+  - component: {fileID: 1433480}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1433480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa050f5aeed9d945a67355d9644d9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1373202993}
+--- !u!4 &1433481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433479}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6560028, y: -1.3811986, z: 0.56455433}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &11824060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,7 +2584,7 @@ Transform:
   m_GameObject: {fileID: 761397614}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.265, y: -0.621, z: -0.01858102}
+  m_LocalPosition: {x: 4.265, y: -0.621, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4032,7 +4077,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.897, y: -0.753, z: 0}
-  m_LocalScale: {x: 26.644247, y: 10.710625, z: 1}
+  m_LocalScale: {x: 32.639202, y: 17.404766, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 761397615}
@@ -4403,12 +4448,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7682437451274708385, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682437451274708385, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682437451274708385, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682437451274708385, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -484.8
+      value: -656
       objectReference: {fileID: 0}
     - target: {fileID: 7682437451274708385, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -234.9
+      value: -432
       objectReference: {fileID: 0}
     - target: {fileID: 8723879475539201863, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
       propertyPath: m_FontData.m_MinSize
@@ -4423,6 +4480,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
+--- !u!114 &1373202993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8723879475539201863, guid: 774d15909ba48054baa6013b92dbb8e5, type: 3}
+  m_PrefabInstance: {fileID: 1373202992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1397486974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6606,3 +6674,4 @@ SceneRoots:
   - {fileID: 1464522317}
   - {fileID: 1373202992}
   - {fileID: 761397615}
+  - {fileID: 1433481}

@@ -14,6 +14,7 @@ public class LevelsWindow : MonoBehaviour
     public Button level_6;
     public Button level_7;
     public Button level_8;
+    public Button mainMenu;
 
     void Start()
     {
@@ -33,6 +34,8 @@ public class LevelsWindow : MonoBehaviour
             level_7.onClick.AddListener(() => ChangeScene(level_7.name));
         if (level_8 != null)
             level_8.onClick.AddListener(() => ChangeScene(level_8.name));
+        if (mainMenu != null)
+            mainMenu.onClick.AddListener(() => ChangeScene(mainMenu.name));
     }
 
     void ChangeScene(string changedScene)
