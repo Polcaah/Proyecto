@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    private Transform currentCheckpoint;
     [SerializeField] private float startingHealth;
     private float currentHealth;
     private bool dead;
@@ -25,19 +26,14 @@ public class Health : MonoBehaviour
         {
             if (!dead)
             {
-                GetComponent<PlayerMovement>().enabled = false;
+                GetComponent<PlayerController>().enabled = false;
                 dead = true;
 
-                Invoke("RespawnPlayer", 0.3f);
+                Invoke("Respawn", 0.3f);
             }
         }
     }
 
-    private void RespawnPlayer()
-    {
-        GetComponent<PlayerRespawn>().Respawn();
-        GetComponent<PlayerMovement>().enabled = true;
-    }
     public void AddHealth(float _value)
     {
         currentHealth = Mathf.Clamp(currentHealth + _value, 0, startingHealth);
@@ -45,9 +41,20 @@ public class Health : MonoBehaviour
 
     public void Respawn()
     {
+        transform.position = currentCheckpoint.position;
         dead = false;
+        GetComponent<PlayerController>().enabled = true;
         if (GameManager.instance != null)
             GameManager.instance.AddScore(-20);
         AddHealth(startingHealth);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Checkpoint")
+        {
+            currentCheckpoint = collision.transform;
+            collision.GetComponent<Collider2D>().enabled = false;
+        }
     }
 }
