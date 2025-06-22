@@ -3,7 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class SceneMemory
+public class SceneMemory : MonoBehaviour
 {
-    public static string previousSceneName = "";
+    public static SceneMemory instance;
+
+    public string previousSceneName = "";
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

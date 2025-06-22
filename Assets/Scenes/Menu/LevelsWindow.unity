@@ -6721,14 +6721,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a8783aa7135b44b9f0533da07e2616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level_1: {fileID: 1870795296}
-  level_2: {fileID: 91553356}
-  level_3: {fileID: 248610018}
-  level_4: {fileID: 1387451723}
-  level_5: {fileID: 357412884}
-  level_6: {fileID: 1599618125}
-  level_7: {fileID: 1771580368}
-  level_8: {fileID: 1653167507}
+  levelButtons:
+  - {fileID: 1870795296}
+  - {fileID: 91553356}
+  - {fileID: 248610018}
+  - {fileID: 1387451723}
+  - {fileID: 357412884}
+  - {fileID: 1599618125}
+  - {fileID: 1771580368}
+  - {fileID: 1653167507}
   mainMenu: {fileID: 975170918}
 --- !u!1 &1857550200
 GameObject:

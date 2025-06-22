@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7310647668c4c4b43b8626ede2ac3654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  damage: 0
 --- !u!4 &63646540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 730121929076606317, guid: 67ef8da6371a54843b4ce8125d3197a0, type: 3}
@@ -1822,6 +1822,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 63646540}
     m_Modifications:
+    - target: {fileID: 313190760457382798, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
+      propertyPath: visualEffect
+      value: 
+      objectReference: {fileID: 673921760}
     - target: {fileID: 2767663399544186168, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
       propertyPath: m_Name
       value: Apple (1)
@@ -1886,6 +1890,11 @@ PrefabInstance:
 --- !u!4 &673921759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7345905896552610459, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
+  m_PrefabInstance: {fileID: 673921758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &673921760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3990339823286160589, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
   m_PrefabInstance: {fileID: 673921758}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &684085410
@@ -2544,6 +2553,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 63646540}
     m_Modifications:
+    - target: {fileID: 313190760457382798, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
+      propertyPath: visualEffect
+      value: 
+      objectReference: {fileID: 885916945}
     - target: {fileID: 2767663399544186168, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
       propertyPath: m_Name
       value: Apple
@@ -2608,6 +2621,11 @@ PrefabInstance:
 --- !u!4 &885916944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7345905896552610459, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
+  m_PrefabInstance: {fileID: 885916943}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &885916945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3990339823286160589, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
   m_PrefabInstance: {fileID: 885916943}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &931206533
@@ -3851,6 +3869,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 63646540}
     m_Modifications:
+    - target: {fileID: 313190760457382798, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
+      propertyPath: visualEffect
+      value: 
+      objectReference: {fileID: 1544989200}
     - target: {fileID: 2767663399544186168, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
       propertyPath: m_Name
       value: Apple (2)
@@ -3915,6 +3937,11 @@ PrefabInstance:
 --- !u!4 &1544989199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7345905896552610459, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
+  m_PrefabInstance: {fileID: 1544989198}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1544989200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3990339823286160589, guid: 2b4aebc335ae3694b8418f213b776221, type: 3}
   m_PrefabInstance: {fileID: 1544989198}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1561750747

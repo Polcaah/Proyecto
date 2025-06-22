@@ -20,8 +20,7 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
-        score += amount;
-        ClampScore();
+        score = Mathf.Max(0, score + amount);
         UpdateScoreUI();
     }
 
@@ -29,10 +28,5 @@ public class GameManager : MonoBehaviour
     {
         if (scoreText != null)
             scoreText.text = "Score: " + score.ToString();
-    }
-    void ClampScore()
-    {
-        if (score < 0)
-            score = 0;
     }
 }
